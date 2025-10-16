@@ -1,0 +1,86 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #e6f4f8;
+  margin: 0;
+  padding: 0;
+  color: #003b5c;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.logo {
+  width: 80px;
+  float: left;
+  margin-right: 20px;
+}
+
+header h1 {
+  color: #005f73;
+}
+
+fieldset {
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 15px;
+}
+
+legend {
+  font-weight: bold;
+  color: #0077b6;
+}
+
+table {
+  width: 100%;
+}
+
+td {
+  padding: 8px;
+  vertical-align: top;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 6px;
+  box-sizing: border-box;
+}
+
+input[type="checkbox"], input[type="radio"] {
+  width: auto;
+}
+
+.button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  margin: 5px;
+  background-color: #0077b6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #005f73;
+}
+
+.hidden {
+  display: none;
+}
+
+#reviewSection {
+  margin-top: 30px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  background-color: #f0faff;
+}
