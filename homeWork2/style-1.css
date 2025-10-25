@@ -1,0 +1,159 @@
+/*
+Program name: style-1.css
+Author: FNU Batul
+Date created: 09-19-2025
+Date last edited: 2025-10-24
+Version: 1.7
+Description: Stylesheet for MedCare patient review form.
+*/
+
+body {
+    background-color: #f5faff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    margin: 0;
+    text-align: center;
+}
+
+#header {
+    background-color: #004c99;
+    color: white;
+    padding: 20px;
+}
+
+#banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 20px;
+}
+
+#logo {
+    height: 80px;
+    width: auto;
+}
+
+.header-text {
+    flex: 1;
+    text-align: center;
+}
+
+#company-name {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+#main-content {
+    padding: 30px;
+}
+
+h1, h2 {
+    color: #004c99;
+}
+
+form {
+    display: inline-block;
+    text-align: left;
+    max-width: 900px;
+}
+
+.form-buttons {
+    text-align: center;
+    padding-top: 20px;
+}
+
+.form-buttons input, .form-buttons button {
+    background-color: #004c99;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.form-buttons input:hover, .form-buttons button:hover {
+    background-color: #0073e6;
+}
+
+#review-section {
+    background-color: #ffffff;
+    border: 2px solid #004c99;
+    border-radius: 8px;
+    margin: 30px auto;
+    max-width: 800px;
+    padding: 20px;
+    text-align: left;
+}
+
+#review-content p {
+    line-height: 1.6;
+}
+
+.button-container {
+  display: flex;
+  /* Optional: Add spacing between buttons */
+  gap: 10px; /* Adjust the value as needed */
+  /* Optional: Center the buttons horizontally */
+  justify-content: center;
+  /* Optional: Center the buttons vertically if the container has a defined height */
+  align-items: center;
+}
+
+/* start password validation */
+.card {
+  background: white;
+  padding: 24px;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  width: 320px;
+}
+
+.error {
+  color: #d9534f;
+  font-size: 13px;
+  min-height: 18px;
+  margin-top: 4px;
+}
+
+input.error-input {
+  border-color: #d9534f;
+}
+/* end password validation */
+
+.hint {
+  font-size: 13px;
+  color: #555;
+  margin-top: 4px;
+}
+
+/* start Slider  */
+
+.slider-wrapper {
+  width: 300px;
+  text-align: center;
+  margin: 30px auto;
+}
+
+.slider-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+input[type="range"] {
+  flex: 1;
+  accent-color: #007bff; /* customize color */
+}
+
+#sliderValue {
+  margin-top: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #333;
+  text-align: center;
+}
+
+/* End slider */
