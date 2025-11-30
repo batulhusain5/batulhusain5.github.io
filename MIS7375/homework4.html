@@ -12,23 +12,15 @@ Description: Patient Registration form with fetch API, iFrames, content protecti
 <head>
     <meta charset="UTF-8">
     <title>MedCare Patient Registration</title>
+    
     <link rel="stylesheet" href="style-2.css">
     <script src="script-2.js" defer></script>
-    <style>
-        body {
-            padding: 20px;
-            font-family: Arial;
-        }
-
-        input, select {
-            padding: 8px;
-            margin-bottom: 15px;
-            width: 90%;
-        }
-    </style>
 </head>
 <body>
-    <!-- Header -->
+
+</div>
+
+    <!-- Header 
     <div id="header">
         <div id="banner">
             <img id="logo" src="Logo-2.jpg" alt="MedCare Logo">
@@ -37,9 +29,12 @@ Description: Patient Registration form with fetch API, iFrames, content protecti
             </div>
             <div id="date-display">Today is: <span id="current-date"></span></div>
         </div>
-    </div>
+    </div> -->
 
     <!-- Main Form -->
+    <label>
+</label>
+
     <div id="main-content">
         <h1>Patient Registration Form</h1>
 
@@ -93,6 +88,7 @@ Description: Patient Registration form with fetch API, iFrames, content protecti
         </select>
     </td>
 </tr>
+
 
 <script type="module" src="script-2.js"></script>
 
@@ -200,13 +196,222 @@ Description: Patient Registration form with fetch API, iFrames, content protecti
                 </div>
             </div>
         </form>
-    </div>
+    </div><
 
-    <!-- Footer -->
-    <div id="footer">
+    <!-- Footer 
+<div id="footer">
         <div class="footer-left">MedCare Medical</div>
         <div class="footer-contact"><button onclick="contactUs()">Contact Us</button></div>
         <div class="footer-info">PO BOX 18881, Sugar Land TX 77496</div>
-    </div>
+    </div> -->
+
+<!-- COOKIE POPUP OVERLAY -->
+<script>
+// ---------------------------
+// Utility: Create cookie
+// ---------------------------
+function setCookie(name, value, days) {
+    const d = new Date();
+    d.setTime(d.getTime() + (days*24*60*60*1000));
+    document.cookie = `${name}=${value};expires=${d.toUTCString()};path=/`;
+}
+
+// ---------------------------
+// Utility: Read cookie
+// ---------------------------
+function getCookie(name) {
+    const cname = name + "=";
+    const decoded = decodeURIComponent(document.cookie);
+    const parts = decoded.split(";");
+    for (let c of parts) {
+        while (c.charAt(0) === " ") c = c.substring(1);
+        if (c.indexOf(cname) === 0) {
+            return c.substring(cname.length, c.length);
+        }
+    }
+    return "";
+}
+
+// ---------------------------
+// Utility: Delete cookie
+// ---------------------------
+function deleteCookie(name) {
+    document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;";
+}
+
+// ---------------------------
+// PAGE LOAD LOGIC
+// ---------------------------
+window.onload = function () {
+    const savedName = getCookie("firstname");
+    const firstNameField = document.getElementById("firstName");
+
+    // If cookie exists already, ask user to confirm
+    if (savedName) {
+        const message = `Welcome back ${savedName}.\nPress OK to confirm or Cancel if this isn't ${savedName}.`;
+        const confirmed = confirm(message);
+
+        if (confirmed) {
+           
+            firstNameField.value = savedName;
+        } else {
+           
+            deleteCookie("firstname");
+            firstNameField.value = "";
+        }
+    }
+
+    // Save new first name when the user changes the field
+    firstNameField.addEventListener("change", function () {
+        const nameValue = firstNameField.value.trim();
+        if (nameValue.length > 0) {
+            setCookie("firstname", nameValue, 7); // save 7 days
+        }
+    });
+};
+</script>
+</head>
+
+<!--states being pulled-->
+
+<script src="states.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const stateDropdown = document.getElementById("state");
+    if (!stateDropdown || typeof states === "undefined") {
+        console.error("State dropdown or states array not found");
+        return;
+    }
+
+    // Clear existing options
+    stateDropdown.innerHTML = "";
+
+    // Populate states
+    states.forEach(state => {
+        const option = document.createElement("option");
+        option.value = state;
+        option.textContent = state;
+        stateDropdown.appendChild(option);
+    });
+});
+</script>
+
+<!-- local storage-->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("patient-form");
+
+    // --- Cookie helpers ---
+    function setCookie(name, value, days) {
+        const d = new Date();
+        d.setTime(d.getTime() + (days*24*60*60*1000));
+        document.cookie = `${name}=${encodeURIComponent(value)};expires=${d.toUTCString()};path=/`;
+    }
+
+    function getCookie(name) {
+        const cname = name + "=";
+        const decoded = decodeURIComponent(document.cookie);
+        const parts = decoded.split(";");
+        for (let c of parts) {
+            while (c.charAt(0) === " ") c = c.substring(1);
+            if (c.indexOf(cname) === 0) return c.substring(cname.length);
+        }
+        return "";
+    }
+
+    function deleteCookie(name) {
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;";
+    }
+
+    // --- List of form fields to save (exclude SSN and passwords) ---
+    const fieldsToSave = [
+        "firstName","middleInitial","lastName","phone","dob",
+        "address1","address2","city","state","zip","email",
+        "gender","insurance","contactMethod","conditions",
+        "symptoms","slider","userID"
+    ];
+
+    // --- Populate form from localStorage ---
+    function loadFromStorage() {
+        fieldsToSave.forEach(id => {
+            const el = document.getElementById(id);
+            const val = localStorage.getItem(id);
+            if (el && val !== null) {
+                if (el.type === "radio" || el.type === "checkbox") {
+                    if (el.type === "radio") {
+                        const radio = document.querySelector(`input[name="${el.name}"][value="${val}"]`);
+                        if (radio) radio.checked = true;
+                    } else if (el.type === "checkbox") {
+                        const checkboxes = document.querySelectorAll(`input[name="${el.name}"]`);
+                        checkboxes.forEach(cb => cb.checked = val.split(",").includes(cb.value));
+                    }
+                } else if (el.tagName === "SELECT") {
+                    el.value = val;
+                } else if (el.tagName === "DIV" || el.tagName === "SPAN") {
+                    el.textContent = val;
+                } else {
+                    el.value = val;
+                }
+            }
+        });
+    }
+
+    // --- Save to localStorage ---
+    function saveToStorage(id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+
+        let value;
+        if (el.type === "radio") {
+            const checked = document.querySelector(`input[name="${el.name}"]:checked`);
+            value = checked ? checked.value : "";
+        } else if (el.type === "checkbox") {
+            const checkedBoxes = Array.from(document.querySelectorAll(`input[name="${el.name}"]:checked`));
+            value = checkedBoxes.map(cb => cb.value).join(",");
+        } else {
+            value = el.value;
+        }
+
+        localStorage.setItem(id, value);
+    }
+
+    // --- Attach listeners to save on change ---
+    fieldsToSave.forEach(id => {
+        const el = document.getElementById(id);
+        if (!el) return;
+
+        if (el.type === "radio" || el.type === "checkbox") {
+            const inputs = document.querySelectorAll(`input[name="${el.name}"]`);
+            inputs.forEach(input => input.addEventListener("change", () => saveToStorage(id)));
+        } else {
+            el.addEventListener("change", () => saveToStorage(id));
+        }
+    });
+
+    // --- On page load, check for first name cookie ---
+    const firstNameCookie = getCookie("firstname");
+    if (firstNameCookie) {
+        const confirmed = confirm(`Welcome back ${firstNameCookie}.\nPress OK to continue as this user or Cancel to start over.`);
+        if (confirmed) {
+            // Load saved fields
+            loadFromStorage();
+        } else {
+            // Clear cookie and storage
+            deleteCookie("firstname");
+            fieldsToSave.forEach(id => localStorage.removeItem(id));
+        }
+    }
+
+    // --- Save first name to cookie when changed ---
+    const firstNameField = document.getElementById("firstName");
+    firstNameField.addEventListener("change", function () {
+        const val = firstNameField.value.trim();
+        if (val.length > 0) setCookie("firstname", val, 7); // 7-day cookie
+    });
+});
+</script>
+
+
 </body>
 </html>
