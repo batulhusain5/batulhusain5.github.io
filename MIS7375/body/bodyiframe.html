@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>MedCare Patient Registration Wrapper</title>
+    <div id="welcomeMessage" style="color:white; font-size:18px; padding-left:20px;"></div>
+
+    <link rel="stylesheet" href="bodystyle.css">
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: auto;       /* allow page scroll */
+            overflow: auto;     /* enable outer page scroll */
+        }
+
+        /* HEADER */
+        #header {
+            width: 100%;
+            height: 100px;
+            background-color: #003366; 
+            color: white;
+        }
+
+        #header table {
+            width: 100%;
+            height: 100%;
+        }
+
+        #header img {
+            height: 60px;
+            padding: 10px;
+        }
+
+        #header .header-text {
+            font-size: 24px;
+            font-weight: bold;
+            padding-left: 10px;
+            vertical-align: middle;
+        }
+
+        /* FOOTER */
+        #footer {
+            width: 100%;
+            height: 50px;
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            line-height: 50px;
+            margin-top: 20px; /* space after form */
+        }
+
+        /* IFRAME CONTAINER */
+        #iframe-container {
+            width: 100%;
+            height: 600px;  /* height of scrollable form */
+            margin: 20px 0;
+            border: 1px solid #ccc;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+    <script>
+
+
+</script>
+
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div id="header">
+        <table>
+            <tr>
+                <td><img src="Logo-2.jpg" alt="MedCare Logo"></td>
+                <td class="header-text">MedCare</td>
+                <td align="right" style="padding-right:20px;">
+    <span id="currentDateTime"></span>
+</td>
+
+                
+
+            </tr>
+        </table>
+    </div>
+
+    <!-- SCROLLABLE FORM -->
+    <div id="iframe-container">
+        <iframe src="../homework4.html"></iframe>
+    </div>
+
+    <!-- FOOTER -->
+    <div id="footer">
+        © 2025 MedCare Medical — All Rights Reserved
+    </div>
+
+    
+    <!--dynamic time-->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    function updateDateTime() {
+        const now = new Date();
+
+        const options = {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        };
+
+        const datePart = now.toLocaleDateString("en-US", options);
+        const timePart = now.toLocaleTimeString("en-US");
+
+        document.getElementById("currentDateTime").textContent =
+            datePart + " " + timePart;
+    }
+
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+
+});
+</script>
+</body>
+</html>
+
+
+</body>
+</html>
