@@ -95,6 +95,7 @@ function displayCurrentDate() {
     const now = new Date();
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     document.getElementById('current-date').textContent = now.toLocaleDateString('en-US', options);
+    
 }
 
 function showThankYou() {
@@ -439,8 +440,8 @@ function validateEmail() {
 
 //Using try and catch to Fetch API for states list
 
-// script.js
-const stateDropdown = document.getElementById('state');
+// states.js
+/*const stateDropdown = document.getElementById('state');
 
 async function loadStates() {
     try {
@@ -465,8 +466,32 @@ async function loadStates() {
 }
 
 // call the function
-loadStates();
-
-
+loadStates(); */
 
 // fetch API states ends
+
+//update time dynamically
+<script>
+function updateDateTime() {
+    const now = new Date();
+
+    const options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+    };
+
+    const dateString = now.toLocaleDateString("en-US", options);
+    const timeString = now.toLocaleTimeString("en-US");
+
+    document.getElementById("currentDateTime").textContent =
+        dateString + " " + timeString;
+}
+
+// run immediately
+updateDateTime();
+
+// update every second
+setInterval(updateDateTime, 1000);
+</script>
